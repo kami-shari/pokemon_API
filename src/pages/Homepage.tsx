@@ -12,7 +12,8 @@ export default function Homepage() {
       setIsLoading(true);
       const pokemonArray: Pokemon[] = [];
       for (let i = 1; i <= 20; i++) {
-        pokemonArray.push(await getPokemonDetails(i));
+        const pokemon = await getPokemonDetails(i);
+        pokemonArray.push(pokemon);
       }
       setData(pokemonArray);
     } catch (error) {
@@ -24,7 +25,7 @@ export default function Homepage() {
 
   useEffect(() => {
     setPokemonData();
-  }, []); // Fixed dependency array
+  }, []); 
 
   if (isLoading) {
     return <div>Loading...</div>;
