@@ -6,18 +6,24 @@ import { Pokemon } from "../lib/Interfaces";
 export default function Homepage() {
   const [data, setData] = useState<Pokemon[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const setPokemonData = async () => {
     try {
       setIsLoading(true);
-      const pokemonArray: Pokemon[] = [];
-      for (let i = 1; i <= 20; i++) {
-        const pokemon = await getPokemonDetails(i);
-        pokemonArray.push(pokemon);
-      }
+      setError(null);
+      const promises = Array.from({ length: 20 }, (_, i) => 
+        getPokemonDetails(i + 1).catch(err => {
+          console.error(`Error fetching Pokemon ${i + 1}:`, err);
+          return null;
+        })
+      );
+      const pokemonArray = (await Promise.all(promises)).filter((pokemon): pokemon is Pokemon => pokemon !== null);
       setData(pokemonArray);
-    } catch (error) {
+    } catch (err) {
+      const error = err as Error;
       console.error("Error fetching Pokemon:", error);
+      setError(error.message || "Failed to load Pokémon");
     } finally {
       setIsLoading(false);
     }
@@ -27,8 +33,15 @@ export default function Homepage() {
     setPokemonData();
   }, []); 
 
+  if (error) {
+    return <div className="error-message">{error}</div>;
+  }
+
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className="loading-container">
+      <div className="loading-spinner"></div>
+      <p>Loading Pokémon...</p>
+    </div>;
   }
 
   return (
