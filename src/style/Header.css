@@ -1,0 +1,251 @@
+@font-face {
+  font-family: "Pokemon-font";
+  src: url('./font/pokemon-solid-font/PokemonSolidNormal-xyWR.ttf');
+}
+/* #######   Allgemeine Styles   ####### */
+.logo-container{
+  font-family: "Pokemon-font";
+  color: var(--color-electric);
+  font-weight: 900;
+  text-shadow: 2px 1px 3px var(--color-poke-blue);;
+  justify-content:  center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+}
+
+.logo-container img{
+  min-width: 300px;
+  max-width: 650px;
+  min-height: 40px;
+  max-height: 500px;
+}
+
+.theme--dark .logo-container{
+  color: #f3df07;
+  text-shadow: 0px 0px 5px #4356cf;
+}
+
+.elemtene-header{
+  margin: 20px 0%;
+    display: flex;
+    align-items:start;
+    justify-content: space-between;
+}
+
+.L-D-Mode{
+  margin-top: 4px;
+    width: 40px;
+  }
+
+  /* **********  Web Nav und co   ********** */
+
+  header{
+    padding-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.logo-container{
+  margin-right: 15%;
+}
+
+.logo-container h1{
+  margin: 10px;
+  font-size: 1.8rem;
+  width: 120%;
+  margin-left: 30%;
+}
+
+.elemtene-header{
+  width: 90%;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  margin: 25px;
+}
+
+.navigation input{
+  display: none;
+}
+
+.elemtene-header form{
+  grid-column: 1 / 6;
+  grid-row: 2/3;
+
+}
+
+.search-input{
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 5px ;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.menu1{
+  display: flex;
+  padding: 15px 30px;
+  background-color: #2a3964;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.p-menu1{
+  grid-column: 1 / 5;
+  grid-row: 1/2;
+}
+
+.theme--dark .menu1{
+  background-color: #02173F;
+}
+
+.menu1 a{
+  color: white;
+  font-weight: 600;
+  font-size: 1.3rem;
+  width: 9svw;
+  text-align: center;
+}
+
+.elemtene-header button{
+  margin: 0px 1rem;
+  grid-column: 5 / 6;
+  grid-row: 1/2;
+}
+
+/* **********   Mobil & Tablet Style   ********** */
+@media only screen and (max-width: 1024px) { 
+
+  header{
+    display: inline;
+  }
+  .logo-container h1{
+    margin: 10px;
+    font-size: 1.8rem;
+    width: 100svw;
+    text-align: center;
+    margin-left: 0%;
+  }
+
+  .search-input{
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 5px;
+    font-size: 1.5rem;
+    min-width: 65svw;
+    max-width: 90svw;
+  }
+
+  .elemtene-header{
+    flex-wrap: nowrap;
+ 
+      display: flex;
+  }
+  
+  /* #######   Burgermenue   ####### */
+  
+  .p-menu1{
+       height: 100%;
+  }
+  
+    /* Hamburger */
+    .hamburger1 {
+      height: 45px;
+      margin: 0px 10px;
+      /* display: grid; */
+      grid-template-rows: repeat(3, 1fr);
+      justify-items: center;
+      z-index: 120;
+    }
+    
+    .hamburger1 div {
+      background-color: #02173F;
+      position: relative;
+      width: 40px;
+      height: 5px;
+      margin-bottom: 7px;
+      -webkit-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out;
+      border-radius: 5px;
+    }
+    .theme--dark .hamburger1 div{
+      background-color: rgb(255, 255, 255);
+    }
+    
+    #toggle1 {
+      display: none;
+    }
+    
+    #toggle1:checked + .hamburger1 .top {
+      -webkit-transform: rotate(-45deg);
+              transform: rotate(-45deg);
+      margin-top: 4.5px;
+    }
+    
+    #toggle1:checked + .hamburger1 .meat {
+      -webkit-transform: rotate(45deg);
+              transform: rotate(45deg);
+      margin-top: -10px
+    }
+    
+    #toggle1:checked + .hamburger1 .bottom {
+      -webkit-transform: scale(0);
+              transform: scale(0);
+    }
+    
+    #toggle1:checked ~ .menu1 {
+      height: 60svh;
+      width: 85svw;
+      margin-right: 15svw;
+    }
+    
+    /* Menu ausgeklappt */
+    .menu1 {
+      background-color: #02173F;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5%;
+      
+      padding: 0;
+      list-style: none;
+      clear: both;
+      width: auto;
+      text-align: center;
+      height: 0px;
+      overflow: hidden;
+      transition: height .4s ease;
+      z-index: 120;
+      -webkit-transition: all 0.3s ease;
+      transition: all 0.3s ease;
+    }
+    
+    .menu1 a:first-child {
+      margin-top: 40px;
+    }
+    
+    .menu1 a:last-child {
+      margin-bottom: 10px;
+    }
+    
+    .link1 {
+      padding: 20px;
+      font-weight: 700 ;
+    }
+    
+    .link1:hover {
+      padding: 20px 40svw;
+      background-color: #ccdadd;
+      border-radius: 10px;
+      color: #02173F;
+      -webkit-transition: all 0.3s ease;
+      transition: all 0.3s ease;
+    }
+  }
+  

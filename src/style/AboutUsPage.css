@@ -1,0 +1,84 @@
+/* #######   Allgemeine About us   ####### */
+
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+section h2 {
+  font-family: Pokemon;
+  color: var(--color-electric);
+  font-size: 2rem;
+  text-shadow: 3px 4px 2px var(--color-poke-blue);
+letter-spacing: 0.4rem;
+
+}
+
+section p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin: 1rem 0;
+}
+
+.person-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.card {
+  background-color: white;
+  border: 5px solid var(--color-poke-blue);
+  border-radius: 15px;
+  padding: 15px;
+  margin: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 300px;
+}
+
+.Personen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Personen h3 {
+  font-family: Pokemon;
+  color: var(--color-electric);
+  font-size: 1.5rem;
+  text-shadow: 3px 4px 2px var(--color-poke-blue);
+letter-spacing: 0.25rem;
+
+}
+
+.Personen h4 {
+  font-size: 1rem;
+}
+
+.theme--dark .Personen h4{
+  color: black;
+}
+
+.person-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+  .line {
+    height: 4px; 
+    background: linear-gradient(to right, var(--color-poke-blue), var(--color-electric)); 
+    margin: 1rem 0; 
+  }
+
+
+  .theme--dark .Personen  p{
+    color: black;
+
+  }
