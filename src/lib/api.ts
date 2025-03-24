@@ -20,6 +20,9 @@ export const getPokemonDetails = async (idOrName: number | string) => {
       stats: data.stats,
       height: data.height,
       weight: data.weight,
+      cries: data.cries,
+      moves: data.moves,
+      abilities: data.abilities,
     };
   } catch (error) {
     console.error('Error fetching Pokemon:', error);
