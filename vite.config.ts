@@ -14,4 +14,10 @@ export default defineConfig({
     }
   },
   plugins: [react()],
+  build: {
+    minify: 'esbuild',
+    sourcemap: false,
+    target: 'esnext',
+    outDir: 'dist',
+  }
 })
