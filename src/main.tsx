@@ -4,11 +4,9 @@ import App from "./App.tsx";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import "./style/index.css";
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV === 'development') {
   import('react-devtools').then(() => {
     console.log('React DevTools enabled');
-  }).catch((err) => {
-    console.error('Error loading React DevTools:', err);
   });
 }
 

@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react-swc';
 
 export default defineConfig({
   server: {
@@ -15,11 +15,19 @@ export default defineConfig({
       }
     }
   },
-  plugins: [react()],
+  plugins: [
+    react()
+  ],
+  optimizeDeps: {
+    exclude: ['react-devtools'],
+  },
   build: {
     minify: 'esbuild',
     sourcemap: true,
     outDir: 'dist',
     target: 'esnext',
+  },
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
   }
-})
+});
