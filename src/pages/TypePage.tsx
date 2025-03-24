@@ -9,24 +9,16 @@ const TypePage = () => {
 
   const types = [
     "bug",
-    "dark",
     "dragon",
     "electric",
     "fairy",
-    "fighting",
-    "fire",
-    "flying",
     "ghost",
     "grass",
     "ground",
-    "ice",
     "normal",
-    "plant",
     "poison",
-    "psychic",
     "rock",
-    "steel",
-    "water",
+    "steel"
   ];
 
   const chooseByType = async (type: string) => {

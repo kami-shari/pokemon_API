@@ -20,7 +20,7 @@ export default function AboutUsPage() {
         <article className="card Personen">
           <img
             className="person-image"
-            src="/team-pictures/kami.png"
+            src="/kami.png"
             alt="Kami"
           />
           <h3>Kami</h3>
@@ -35,7 +35,7 @@ export default function AboutUsPage() {
         <article className="card Personen">
           <img
             className="person-image"
-            src="/team-pictures/christian.png"
+            src="/christian.png"
             alt="Christian"
           />
           <h3>Christian</h3>
@@ -51,7 +51,7 @@ export default function AboutUsPage() {
         <article className="card Personen">
           <img
             className="person-image"
-            src="/team-pictures/anne.png"
+            src="/anne.png"
             alt="Anne"
           />
           <h3>Anne</h3>
