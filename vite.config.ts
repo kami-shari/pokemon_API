@@ -5,6 +5,7 @@ export default defineConfig({
   server: {
     port: process.env.PORT ? Number(process.env.PORT) : 10000,
     host: '0.0.0.0',
+    allowedHosts: ['pokemon-api-79sn.onrender.com'],
     proxy: {
       '/api': {
         target: 'https://pokeapi.co',
@@ -14,10 +15,4 @@ export default defineConfig({
     }
   },
   plugins: [react()],
-  build: {
-    minify: 'esbuild',
-    sourcemap: false,
-    target: 'esnext',
-    outDir: 'dist',
-  }
 })
