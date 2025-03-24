@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { getPokemonDetails } from "../lib/api";
 import { Pokemon } from "../lib/Interfaces";
 import PokeCard from "../components/PokeCard";
 
@@ -21,20 +20,60 @@ const TypePage = () => {
     "steel"
   ];
 
+  const fetchWithRetry = async (url: string, retries = 3) => {
+    for (let i = 0; i < retries; i++) {
+      try {
+        const response = await fetch(url, {
+          headers: {
+            'Accept': 'application/json',
+            'User-Agent': 'Pokemon-App'
+          }
+        });
+        if (response.ok) return response.json();
+        if (response.status === 403) {
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          continue;
+        }
+        throw new Error(`HTTP error! status: ${response.status}`);
+      } catch (error) {
+        if (i === retries - 1) throw error;
+      }
+    }
+  };
+
   const chooseByType = async (type: string) => {
     setIsLoading(true);
+    setData(null);
     try {
       const pokemonUrl = `https://pokeapi.co/api/v2/type/${type}`;
-      const response = await fetch(pokemonUrl);
-      const json = await response.json();
+      const json = await fetchWithRetry(pokemonUrl);
+      
+      const basicPokemon = json.pokemon
+        .slice(0, 10)
+        .filter((p: any) => {
+          const name = p.pokemon.name;
+          return !name.includes('-') && !name.includes('gmax');
+        });
+      
       const pokemonArray = await Promise.all(
-        json.pokemon.map((pokemonItem: any) => {
-          return getPokemonDetails(pokemonItem.pokemon.name);
+        basicPokemon.map(async (pokemonItem: any) => {
+          try {
+            const pokemon = await fetchWithRetry(`https://pokeapi.co/api/v2/pokemon/${pokemonItem.pokemon.name}`);
+            return pokemon;
+          } catch (err) {
+            return null;
+          }
         })
       );
-      setData(pokemonArray);
+
+      const validPokemon = pokemonArray.filter((pokemon): pokemon is Pokemon => 
+        pokemon !== null && pokemon.id !== undefined
+      ).slice(0, 6);
+      
+      setData(validPokemon);
     } catch (error) {
       console.error("Error fetching Pokemon:", error);
+      setData([]);
     } finally {
       setIsLoading(false);
     }
