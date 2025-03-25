@@ -62,9 +62,6 @@ export default function AboutUsPage() {
           </p>
           <h4>Contact:</h4>
           <a href="https://github.com/Anne-SophieNehls">Github</a>
-          <a href="https://www.linkedin.com/in/anne-sophie-nehls-89ba671b7/">
-            LinkedIn
-          </a>
         </article>
       </div>
       
