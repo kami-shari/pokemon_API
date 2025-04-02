@@ -1,17 +1,20 @@
 import { useRef } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import ThemeSwitcher from "./ThemeSwitcher";
 
 export default function Header() {
   const searchRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!searchRef.current) return;
 
-    const id = searchRef.current.value;
-    location.href = `/pokemon/${id}`;
+    const id = searchRef.current.value.toLowerCase().trim();
+    navigate(`/pokemon/${id}`);
+    searchRef.current.value = '';
   };
+
   return (
     <header>
       <NavLink to="/" className="logo-container">
