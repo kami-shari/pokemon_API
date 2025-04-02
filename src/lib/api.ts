@@ -1,8 +1,9 @@
 export const getPokemonDetails = async (idOrName: number | string) => {
   try {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${idOrName}`, {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${idOrName.toString().toLowerCase()}`, {
       method: 'GET',
       headers: {
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
     });
